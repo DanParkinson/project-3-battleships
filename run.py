@@ -10,6 +10,7 @@ class Board:
     def __init__(self):
         self.grid_size = 8
         self.grid = self.create_grid()
+        self.add_axis_to_grid()
     
     def create_grid(self):
         '''
@@ -21,6 +22,10 @@ class Board:
         # used for testing until class game works
         for i in self.grid:
             print(' '.join(i))
+
+    def add_axis_to_grid(self):
+        # replace numbers at the top of grid to numbers
+        self.grid[0] = [str(i) for i in range(0, self.grid_size)]
     
 class Game:
     '''
