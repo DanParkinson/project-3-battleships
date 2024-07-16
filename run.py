@@ -1,3 +1,5 @@
+import random
+
 # constants
 WATER = '~'
 LETTERS = ['A' ,'B' , 'C', 'D', 'E', 'F', 'G', 'H']
@@ -12,6 +14,7 @@ class Board:
         self.grid_size = 8
         self.grid = self.create_grid()
         self.add_axis_to_grid()
+        self.place_ships()
     
     def create_grid(self):
         '''
@@ -30,6 +33,11 @@ class Board:
         # replace first cell in each row with letters.
         for i in range(1, self.grid_size):
             self.grid[i][0] = LETTERS[i - 1]
+
+    def place_ships(self):
+        row = random.randint(1, self.grid_size)
+        col = random.randint(1, self.grid_size)
+        return row, col
     
 class Game:
     '''
@@ -50,6 +58,7 @@ def main():
     '''
     board = Board()
     board.print_grid() #used for testing
+    print(board.place_ships()) # testing to see if place_ships generates numbers
     pass
 
 main()
