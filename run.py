@@ -2,6 +2,7 @@ import random
 
 # constants
 WATER = '~'
+SHIP = 'S'
 LETTERS = ['A' ,'B' , 'C', 'D', 'E', 'F', 'G', 'H']
 
 class Board:
@@ -35,9 +36,11 @@ class Board:
             self.grid[i][0] = LETTERS[i - 1]
 
     def place_ships(self):
-        row = random.randint(1, self.grid_size)
-        col = random.randint(1, self.grid_size)
-        return row, col
+        row = random.randint(1, self.grid_size - 1)
+        col = random.randint(1, self.grid_size - 1)
+        if self.grid[row][col] != SHIP:
+            self.grid[row][col] = SHIP
+
     
 class Game:
     '''
@@ -58,7 +61,5 @@ def main():
     '''
     board = Board()
     board.print_grid() #used for testing
-    print(board.place_ships()) # testing to see if place_ships generates numbers
-    pass
 
 main()
