@@ -15,7 +15,12 @@ class Board:
         '''
         creates an 8x8 grid
         '''
-        grid = [[WATER for i in range(self.grid_size)] for i in range(self.grid_size)]
+        return [[WATER for i in range(self.grid_size)] for i in range(self.grid_size)]
+        
+    def print_grid(self):
+        # used for testing until class game works
+        for i in self.grid:
+            print(' '.join(i))
     
 class Game:
     '''
@@ -35,6 +40,7 @@ def main():
     main function for playing game
     '''
     board = Board()
+    board.print_grid() #used for testing
     pass
 
 main()
