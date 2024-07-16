@@ -12,15 +12,16 @@ class Board:
     battleships will be created and stored in ship_locations
     '''
     def __init__(self):
-        self.grid_size = 8
+        # initialises the grids for the boards
+        self.grid_size = 6
+        self.num_of_ships = 5
         self.grid = self.create_grid()
         self.add_axis_to_grid()
+        self.ship_locations = [] # stores ship locations
         self.place_ships()
     
     def create_grid(self):
-        '''
-        creates an 8x8 grid
-        '''
+        # creates an 8x8 grid
         return [[WATER for i in range(self.grid_size)] for i in range(self.grid_size)]
         
     def print_grid(self):
@@ -36,10 +37,12 @@ class Board:
             self.grid[i][0] = LETTERS[i - 1]
 
     def place_ships(self):
-        row = random.randint(1, self.grid_size - 1)
-        col = random.randint(1, self.grid_size - 1)
-        if self.grid[row][col] != SHIP:
-            self.grid[row][col] = SHIP
+        while len(self.ship_locations) < self.num_of_ships:
+            row = random.randint(1, self.grid_size - 1) # numbers to not include axis
+            col = random.randint(1, self.grid_size - 1) # numbers to not include header
+            if self.grid[row][col] != SHIP:
+                self.grid[row][col] = SHIP
+                self.ship_locations.append((row, col)) # adds ship to ship_locations
 
     
 class Game:
@@ -61,5 +64,6 @@ def main():
     '''
     board = Board()
     board.print_grid() #used for testing
+    print(board.ship_locations) # shows ship locations when grid is populated
 
 main()
