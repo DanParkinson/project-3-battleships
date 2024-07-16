@@ -1,5 +1,6 @@
 # constants
 WATER = '~'
+LETTERS = ['A' ,'B' , 'C', 'D', 'E', 'F', 'G', 'H']
 
 class Board:
     '''
@@ -25,7 +26,10 @@ class Board:
 
     def add_axis_to_grid(self):
         # replace numbers at the top of grid to numbers
-        self.grid[0] = [str(i) for i in range(0, self.grid_size)]
+        self.grid[0] = [' '] +[str(i) for i in range(1, self.grid_size)]
+        # replace first cell in each row with letters.
+        for i in range(1, self.grid_size):
+            self.grid[i][0] = LETTERS[i - 1]
     
 class Game:
     '''
