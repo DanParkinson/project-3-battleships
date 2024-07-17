@@ -14,6 +14,14 @@ computer will guess a coordinate.
 computer guess will be checked and validated against board_player 
 board_player updated and printed
 
+jobs 
+player and computer guesses inputted and validated
+
+player board and computer board updated
+display board updated
+
+game over functionn to check when won
+
 '''
 
 # constants
@@ -113,8 +121,7 @@ def main():
     '''
     main function for playing game.
     '''
-    title()
-
+    
     '''
     creates player and computer board 
     creates display board for computer 
@@ -123,10 +130,13 @@ def main():
     board_player = Board()
     board_computer = Board()
     display_board_computer = Board()
-
     # makes a hidden copy of the board_computer.grid
     display_board_computer.grid = display_board(board_computer)
 
+    '''
+    initial game start screen
+    '''
+    title()
     #prints player board and the display computer board
     print_boards_together(board_player, display_board_computer)
 
