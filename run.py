@@ -76,8 +76,17 @@ def main():
     main function for playing game.
     '''
     title()
-    board = Board()
-    print_grid(board) #used for testing
-    print(board.ship_locations) # shows ship locations when grid is populated
+
+    #creates player and computer boards
+    board_player = Board()
+    board_computer = Board()
+
+    #prints player board
+    print_grid(board_player)
+    print(board_player.ship_locations)
+
+    # prints computer board
+    print_grid(board_computer)
+    print(board_computer.ship_locations)
 
 main()
