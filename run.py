@@ -89,6 +89,14 @@ def hidden_board(grid):
         hidden_board_computer.append(hidden_row)
     return hidden_board_computer
 
+def print_hidden_board(board):
+    '''
+    hidden_board_computer() is returned as a list of lists.
+    this prints it like a board
+    '''
+    for i in board:
+        print(' '.join(i))
+
 def main():
     '''
     main function for playing game.
@@ -106,6 +114,6 @@ def main():
 
     #creates hidden board and prints it
     hidden_board_computer = hidden_board(board_computer.grid)
-    print(hidden_board_computer)
+    print_hidden_board(hidden_board_computer)
     
 main()
