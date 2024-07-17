@@ -63,11 +63,19 @@ def print_grid(board):
     for i in board.grid:
         print(' '.join(i))
 
+def title():
+    print('******************************')
+    print(' ---------Battleships---------')
+    print('---The Computer has 5 ships---')
+    print('---------Fire at Will!--------')
+    print('******************************')
+
 
 def main():
     '''
     main function for playing game.
     '''
+    title()
     board = Board()
     print_grid(board) #used for testing
     print(board.ship_locations) # shows ship locations when grid is populated
