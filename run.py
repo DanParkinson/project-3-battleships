@@ -1,5 +1,21 @@
 import random
 
+'''
+board_player and board_computer is created.
+display_board_computer is given board_computers grid
+
+player will guess a coordinate
+player guess will be checked and validated against board_computer
+board_computer will be updated with players guess
+display_board will be updated with updated board_computer
+print updated display_board_computer
+
+computer will guess a coordinate.
+computer guess will be checked and validated against board_player 
+board_player updated and printed
+
+'''
+
 # constants
 WATER = '~'
 SHIP = 'S'
@@ -78,6 +94,10 @@ def print_boards_together(board1, board2):
         print( ' '.join(row1) + '        ' + ' '.join(row2))
 
 def display_board(board):
+    '''
+    copies the inputed boards' grid
+    replaces the ships with water to hide them
+    '''
     display_grid = []
     for row in board.grid:
         display_row = []
@@ -98,7 +118,7 @@ def main():
     '''
     creates player and computer board 
     creates display board for computer 
-    changes the display computers board into a hidden version of computer board
+    changes the display computers board into a display version of computer board
     '''
     board_player = Board()
     board_computer = Board()
@@ -113,8 +133,8 @@ def main():
     '''
     testing
     '''
-    print(board_player.ship_locations)
-    print(board_computer.ship_locations)
-    print(display_board_computer.ship_locations)
+    #print(board_player.ship_locations)
+    #print(board_computer.ship_locations)
+    #print(display_board_computer.ship_locations)
 
 main()
