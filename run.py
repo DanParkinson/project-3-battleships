@@ -4,6 +4,7 @@ import random
 WATER = '~'
 SHIP = 'S'
 LETTERS = ['A' ,'B' , 'C', 'D', 'E', 'F', 'G', 'H']
+grid_size = 5
 
 class Board:
     '''
@@ -21,7 +22,7 @@ class Board:
         self.place_ships()
     
     def create_grid(self):
-        # creates an 8x8 grid
+        # creates an 6x6 grid
         return [[WATER for i in range(self.grid_size)] for i in range(self.grid_size)]
 
     def add_axis_to_grid(self):
@@ -70,6 +71,9 @@ def title():
     print('---------Fire at Will!--------')
     print('******************************')
 
+def print_boards_together(board1, board2):
+    for row1, row2 in zip(board1, board2):
+        print( ' '.join(row1) + '    ' + ' '.join(row2))
 
 def main():
     '''
@@ -82,11 +86,21 @@ def main():
     board_computer = Board()
 
     #prints player board
-    print_grid(board_player)
-    print(board_player.ship_locations)
+    #print_grid(board_player)
+    #print(board_player.ship_locations)
 
     # prints computer board
-    print_grid(board_computer)
-    print(board_computer.ship_locations)
+    #print_grid(board_computer)
+    #print(board_computer.ship_locations)
+
+    '''
+    testing.
+    print boards together functions but wont pull grids out of class Board. 
+    board1 and board2 are used for testing purposes. 
+    '''
+    board1 = [[WATER for i in range(grid_size)] for i in range(grid_size)]
+    board2 = [[WATER for i in range(grid_size)] for i in range(grid_size)]
+    print_boards_together(board1, board2)
+
 
 main()
