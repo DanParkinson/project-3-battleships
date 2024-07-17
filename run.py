@@ -4,7 +4,6 @@ import random
 WATER = '~'
 SHIP = 'S'
 LETTERS = ['A' ,'B' , 'C', 'D', 'E', 'F', 'G', 'H']
-grid_size = 5
 
 class Board:
     '''
@@ -46,7 +45,6 @@ class Board:
                 self.grid[row][col] = SHIP
                 self.ship_locations.append((row, col))
 
-
 class Game:
     '''
     create a hidden board used for only displaying.
@@ -79,6 +77,18 @@ def print_boards_together(board1, board2):
     for row1, row2 in zip(board1.grid, board2.grid):
         print( ' '.join(row1) + '        ' + ' '.join(row2))
 
+def hidden_board(grid):
+    hidden_board_computer = []
+    for row in grid:
+        hidden_row = []
+        for i in row:
+            if i == SHIP:
+                hidden_row.append(WATER)
+            else:
+                hidden_row.append(i)
+        hidden_board_computer.append(hidden_row)
+    return hidden_board_computer
+
 def main():
     '''
     main function for playing game.
@@ -94,5 +104,8 @@ def main():
     print(board_player.ship_locations)
     print(board_computer.ship_locations)
 
-
+    #creates hidden board and prints it
+    hidden_board_computer = hidden_board(board_computer.grid)
+    print(hidden_board_computer)
+    
 main()
