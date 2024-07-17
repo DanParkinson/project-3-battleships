@@ -1,5 +1,5 @@
 import random
-
+grid_size = 6
 '''
 board_player and board_computer is created.
 display_board_computer is given board_computers grid
@@ -117,6 +117,25 @@ def display_board(board):
         display_grid.append(display_row)
     return display_grid
 
+def get_player_guess(grid_size):
+    while True:
+        try:
+            guess = input("choose a coordinate to fire on (e.g A1): ")
+            if len(guess) != 2 or not guess[0].isalpha() or not guess[1].isdigit():
+                raise ValueError ("Not valid input")
+            
+            guess_row = LETTERS.index(guess[0]) + 1 # changes letter to number
+            guess_col = int(guess[1]) # int not str
+
+            if 1 <= guess_row <= grid_size - 1 and 1 <= guess_col <= grid_size - 1:
+                print(f"You fired on {guess}")
+                break
+            else: 
+                print(f"{guess} is not on the grid")
+        except ValueError:
+            (f"{guess} is not on the grid")
+
+
 def main():
     '''
     main function for playing game.
@@ -139,6 +158,11 @@ def main():
     title()
     #prints player board and the display computer board
     print_boards_together(board_player, display_board_computer)
+
+    '''
+    game loop
+    '''
+    get_player_guess(grid_size)
 
     '''
     testing
