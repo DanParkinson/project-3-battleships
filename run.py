@@ -120,11 +120,11 @@ def display_board(board):
 def get_player_guess(grid_size):
     while True:
         try:
-            guess = input("choose a coordinate to fire on (e.g A1): ")
+            guess = input("choose a coordinate to fire on (e.g A1): ").upper()
             if len(guess) != 2 or not guess[0].isalpha() or not guess[1].isdigit():
                 raise ValueError ("Not valid input")
             
-            guess_row = LETTERS.index(guess[0]) + 1 # changes letter to number
+            guess_row = LETTERS.index(guess[0]) + 1 # changes letter to number and adjusts for axis
             guess_col = int(guess[1]) # int not str
 
             if 1 <= guess_row <= grid_size - 1 and 1 <= guess_col <= grid_size - 1:
@@ -133,7 +133,7 @@ def get_player_guess(grid_size):
             else: 
                 print(f"{guess} is not on the grid")
         except ValueError:
-            (f"{guess} is not on the grid")
+            print(f"{guess} is not on the grid")
 
 
 def main():
