@@ -1,5 +1,5 @@
 import random
-grid_size = 6
+
 '''
 board_player and board_computer is created.
 display_board_computer is given board_computers grid
@@ -27,7 +27,10 @@ game over functionn to check when won
 # constants
 WATER = '~'
 SHIP = 'S'
+HIT = 'H'
+MISS = 'M'
 LETTERS = ['A' ,'B' , 'C', 'D', 'E', 'F', 'G', 'H']
+grid_size = 6
 
 class Board:
     '''
@@ -118,6 +121,12 @@ def display_board(board):
     return display_grid
 
 def get_player_guess(grid_size):
+    '''
+    player inputs coordinate e.g. A1
+    letter turned into number of index in LETTERS
+    number changed from string to integer
+    checks it is within the grid
+    '''
     while True:
         try:
             guess = input("choose a coordinate to fire on (e.g A1): ").upper()
@@ -134,6 +143,20 @@ def get_player_guess(grid_size):
                 print(f"{guess} is not on the grid")
         except ValueError:
             print(f"{guess} is not on the grid")
+
+def update_board(board, guess_row, guess_col):
+    '''
+    player guess is checked on the board.
+    if it is a ship it becomes hit
+    anything else it is a miss
+    ship location removed from list
+    '''
+    if board[guess_row][guess_col] == SHIP:
+        board[guess_row][guess_col] = HIT
+        print("HIT!")
+        ship_locations.remove((guess_row, guess_col))
+    else:
+        board[guess_row][guess_col] = MISS
 
 
 def main():
