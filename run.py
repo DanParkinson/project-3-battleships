@@ -46,11 +46,6 @@ class Board:
                 self.grid[row][col] = SHIP
                 self.ship_locations.append((row, col))
 
-    def get_grid(self):
-        '''
-        returns the grid from each board to allow for printing next to each other
-        '''
-        return self.grid
 
 class Game:
     '''
@@ -81,7 +76,7 @@ def print_boards_together(board1, board2):
     '''
     takes grid from both boards and prints them next to each other
     '''
-    for row1, row2 in zip(board1.get_grid(), board2.get_grid()):
+    for row1, row2 in zip(board1.grid, board2.grid):
         print( ' '.join(row1) + '        ' + ' '.join(row2))
 
 def main():
