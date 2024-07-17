@@ -77,25 +77,17 @@ def print_boards_together(board1, board2):
     for row1, row2 in zip(board1.grid, board2.grid):
         print( ' '.join(row1) + '        ' + ' '.join(row2))
 
-def hidden_board(grid):
-    hidden_board_computer = []
-    for row in grid:
-        hidden_row = []
+def display_board(board):
+    display_grid = []
+    for row in board.grid:
+        display_row = []
         for i in row:
             if i == SHIP:
-                hidden_row.append(WATER)
+                display_row.append(WATER)
             else:
-                hidden_row.append(i)
-        hidden_board_computer.append(hidden_row)
-    return hidden_board_computer
-
-def print_hidden_board(board):
-    '''
-    hidden_board_computer() is returned as a list of lists.
-    this prints it like a board
-    '''
-    for i in board:
-        print(' '.join(i))
+                display_row.append(i)
+        display_grid.append(display_row)
+    return display_grid
 
 def main():
     '''
@@ -103,17 +95,26 @@ def main():
     '''
     title()
 
-    #creates player and computer boards
+    '''
+    creates player and computer board 
+    creates display board for computer 
+    changes the display computers board into a hidden version of computer board
+    '''
     board_player = Board()
     board_computer = Board()
+    display_board_computer = Board()
 
-    #prints boards together and their ship locations
-    print_boards_together(board_player, board_computer)
+    # makes a hidden copy of the board_computer.grid
+    display_board_computer.grid = display_board(board_computer)
+
+    #prints player board and the display computer board
+    print_boards_together(board_player, display_board_computer)
+
+    '''
+    testing
+    '''
     print(board_player.ship_locations)
     print(board_computer.ship_locations)
+    print(display_board_computer.ship_locations)
 
-    #creates hidden board and prints it
-    hidden_board_computer = hidden_board(board_computer.grid)
-    print_hidden_board(hidden_board_computer)
-    
 main()
