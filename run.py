@@ -138,13 +138,14 @@ def get_player_guess(grid_size):
 
             if 1 <= guess_row <= grid_size - 1 and 1 <= guess_col <= grid_size - 1:
                 print(f"You fired on {guess}")
+                return guess_row, guess_col
                 break
             else: 
                 print(f"{guess} is not on the grid")
         except ValueError:
             print(f"{guess} is not on the grid")
 
-def update_board(board, guess_row, guess_col):
+def update_board(board, guess_row, guess_col, ship_locations):
     '''
     player guess is checked on the board.
     if it is a ship it becomes hit
@@ -185,7 +186,10 @@ def main():
     '''
     game loop
     '''
-    get_player_guess(grid_size)
+    # get player guess
+    player_guess_row, player_guess_col = get_player_guess(grid_size)
+    # takes player guess and updates display board
+    update_board(board_computer.grid, player_guess_row, player_guess_col, board_computer.ship_locations)
 
     '''
     testing
