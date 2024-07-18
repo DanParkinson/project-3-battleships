@@ -170,8 +170,8 @@ def get_computer_guess(grid_size):
     '''
     genterates random coordinate for the computer guess. 
     '''
-    guess_row = random.randint(1, self.grid_size - 1)
-    guess_col = random.randint(1, self.grid_size - 1)
+    guess_row = random.randint(1, grid_size - 1)
+    guess_col = random.randint(1, grid_size - 1)
     print(f"Computer fired on ({guess_row}, {guess_col})")
     return guess_row, guess_col
 
@@ -204,13 +204,19 @@ def main():
     game loop
     '''
     while True:
-        #player guess
-        player_guess_row, player_guess_col = get_player_guess(grid_size)
-        if validate_guess(board_computer.grid, player_guess_row, player_guess_col): #checks True False
-            update_board(board_computer.grid, player_guess_row, player_guess_col, board_computer.ship_locations)
-            break
-        else:
-            print("You have already guessed that location")
+        while True:
+            #player guess
+            player_guess_row, player_guess_col = get_player_guess(grid_size)
+            if validate_guess(board_computer.grid, player_guess_row, player_guess_col): #checks True False
+                update_board(board_computer.grid, player_guess_row, player_guess_col, board_computer.ship_locations)
+                break
+            else:
+                print("You have already guessed that location")
+            
+        while True:
+            # computer guess
+            computer_guess_row, computer_guess_col = get_computer_guess(grid_size)
+            
 
         # updates display board and reprints them
         display_board_computer.grid = display_board(board_computer)
