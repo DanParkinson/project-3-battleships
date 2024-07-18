@@ -15,12 +15,9 @@ computer guess will be checked and validated against board_player
 board_player updated and printed
 
 jobs 
-player and computer guesses inputted and validated
-
-player board and computer board updated
-display board updated
-
+computer coordinate feedback needs changing to letters
 game over functionn to check when won
+tidy up terminal display with seperators
 
 '''
 
