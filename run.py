@@ -172,15 +172,10 @@ def get_computer_guess(grid_size):
     '''
     guess_row = random.randint(1, grid_size - 1)
     guess_col = random.randint(1, grid_size - 1)
-    print(f"Computer fired on ({guess_row}, {guess_col})")
     return guess_row, guess_col
 
 
 def main():
-    '''
-    main function for playing game.
-    '''
-    
     '''
     creates player and computer board 
     creates display board for computer 
@@ -196,7 +191,6 @@ def main():
     initial game start screen
     '''
     title()
-    #prints player board and the display computer board
     print_boards_together(board_player, display_board_computer)
     print(board_computer.ship_locations)
 
@@ -218,17 +212,11 @@ def main():
             computer_guess_row, computer_guess_col = get_computer_guess(grid_size)
             if validate_guess(board_player.grid, computer_guess_row, computer_guess_col): #checks True False
                 update_board(board_player.grid, computer_guess_row, computer_guess_col, board_player.ship_locations)
+                print(f"Computer fired on ({computer_guess_row}, {computer_guess_col})")
                 break
 
         # updates display board and reprints them
         display_board_computer.grid = display_board(board_computer)
         print_boards_together(board_player, display_board_computer)
-
-    '''
-    testing
-    '''
-    #print(board_player.ship_locations)
-    #print(board_computer.ship_locations)
-    #print(display_board_computer.ship_locations)
 
 main()
