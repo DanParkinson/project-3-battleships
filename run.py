@@ -159,12 +159,12 @@ def update_board(board, guess_row, guess_col, ship_locations):
     else:
         board[guess_row][guess_col] = MISS
 
-def validate_guess():
+def validate_guess(board, guess_row, guess_col):
     '''
     if the guess is WATER or SHIP it returns True
     if the guess is HIT or MISS returns False
     '''
-    return board[guess_row][guess_col] is not [HIT][MISS]
+    return board[guess_row][guess_col] not in [HIT, MISS]
 
 def main():
     '''
@@ -194,11 +194,13 @@ def main():
     game loop
     '''
     while True:
-        # get player guess
+        #player guess
         player_guess_row, player_guess_col = get_player_guess(grid_size)
-        # takes player guess and updates display board
-        update_board(board_computer.grid, player_guess_row, player_guess_col, board_computer.ship_locations)
-        print(board_computer.ship_locations)
+        if validate_guess(board_computer.grid, player_guess_row, player_guess_col): #checks True False
+            update_board(board_computer.grid, player_guess_row, player_guess_col, board_computer.ship_locations)
+            break
+        else:
+            print("You have already gueesed that location")
 
         # updates display board and reprints them
         display_board_computer.grid = display_board(board_computer)
