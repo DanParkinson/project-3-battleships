@@ -216,7 +216,9 @@ def main():
         while True:
             # computer guess
             computer_guess_row, computer_guess_col = get_computer_guess(grid_size)
-            
+            if validate_guess(board_player.grid, computer_guess_row, computer_guess_col): #checks True False
+                update_board(board_player.grid, computer_guess_row, computer_guess_col, board_player.ship_locations)
+                break
 
         # updates display board and reprints them
         display_board_computer.grid = display_board(board_computer)
