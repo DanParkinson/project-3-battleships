@@ -182,14 +182,21 @@ def main():
     title()
     #prints player board and the display computer board
     print_boards_together(board_player, display_board_computer)
+    print(board_computer.ship_locations)
 
     '''
     game loop
     '''
-    # get player guess
-    player_guess_row, player_guess_col = get_player_guess(grid_size)
-    # takes player guess and updates display board
-    update_board(board_computer.grid, player_guess_row, player_guess_col, board_computer.ship_locations)
+    while True:
+        # get player guess
+        player_guess_row, player_guess_col = get_player_guess(grid_size)
+        # takes player guess and updates display board
+        update_board(board_computer.grid, player_guess_row, player_guess_col, board_computer.ship_locations)
+        print(board_computer.ship_locations)
+
+        # updates display board and reprints them
+        display_board_computer.grid = display_board(board_computer)
+        print_boards_together(board_player, display_board_computer)
 
     '''
     testing
