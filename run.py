@@ -159,6 +159,12 @@ def update_board(board, guess_row, guess_col, ship_locations):
     else:
         board[guess_row][guess_col] = MISS
 
+def validate_guess():
+    '''
+    if the guess is WATER or SHIP it returns True
+    if the guess is HIT or MISS returns False
+    '''
+    return board[guess_row][guess_col] is not [HIT][MISS]
 
 def main():
     '''
