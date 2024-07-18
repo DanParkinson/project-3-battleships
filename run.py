@@ -166,6 +166,16 @@ def validate_guess(board, guess_row, guess_col):
     '''
     return board[guess_row][guess_col] not in [HIT, MISS]
 
+def get_computer_guess(grid_size):
+    '''
+    genterates random coordinate for the computer guess. 
+    '''
+    guess_row = random.randint(1, self.grid_size - 1)
+    guess_col = random.randint(1, self.grid_size - 1)
+    print(f"Computer fired on ({guess_row}, {guess_col})")
+    return guess_row, guess_col
+
+
 def main():
     '''
     main function for playing game.
@@ -200,7 +210,7 @@ def main():
             update_board(board_computer.grid, player_guess_row, player_guess_col, board_computer.ship_locations)
             break
         else:
-            print("You have already gueesed that location")
+            print("You have already guessed that location")
 
         # updates display board and reprints them
         display_board_computer.grid = display_board(board_computer)
