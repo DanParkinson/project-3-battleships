@@ -173,7 +173,7 @@ def get_computer_guess(grid_size):
 
 def convert_coordinates(row, col):
     # Convert row number to a letter (1 -> A, 2 -> B, etc.)
-    row_letter = LETTERS[row]
+    row_letter = LETTERS[row - 1]
     # Combine row letter with column number
     coordinate = f"{row_letter}{col}"
     return coordinate
