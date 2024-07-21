@@ -15,7 +15,6 @@ computer guess will be checked and validated against board_player
 board_player updated and printed
 
 jobs 
-computer coordinate feedback needs changing to letters
 game over functionn to check when won
 tidy up terminal display with seperators
 
@@ -100,6 +99,8 @@ def print_boards_together(board1, board2):
     '''
     for row1, row2 in zip(board1.grid, board2.grid):
         print( ' '.join(row1) + '        ' + ' '.join(row2))
+    print('******************************')
+    
 
 def display_board(board):
     '''
@@ -152,9 +153,13 @@ def update_board(board, guess_row, guess_col, ship_locations):
     if board[guess_row][guess_col] == SHIP:
         board[guess_row][guess_col] = HIT
         print("HIT!")
+        print('******************************')
         ship_locations.remove((guess_row, guess_col))
     else:
         board[guess_row][guess_col] = MISS
+        print("MISS!")
+        print('******************************')
+
 
 def validate_guess(board, guess_row, guess_col):
     '''
@@ -214,9 +219,10 @@ def main():
             # computer guess
             computer_guess_row, computer_guess_col = get_computer_guess(grid_size)
             if validate_guess(board_player.grid, computer_guess_row, computer_guess_col): #checks True False
-                update_board(board_player.grid, computer_guess_row, computer_guess_col, board_player.ship_locations)
                 computer_guess_coordinate = convert_coordinates(computer_guess_row, computer_guess_col)
-                print(f"The computer guessed {computer_guess_coordinate}")
+                print(f"The computer fired on {computer_guess_coordinate}")
+                update_board(board_player.grid, computer_guess_row, computer_guess_col, board_player.ship_locations)
+
                 break
 
         # updates display board and reprints them
