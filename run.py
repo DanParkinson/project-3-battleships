@@ -1,24 +1,5 @@
 import random
 
-'''
-board_player and board_computer is created.
-display_board_computer is given board_computers grid
-
-player will guess a coordinate
-player guess will be checked and validated against board_computer
-board_computer will be updated with players guess
-display_board will be updated with updated board_computer
-print updated display_board_computer
-
-computer will guess a coordinate.
-computer guess will be checked and validated against board_player 
-board_player updated and printed
-
-jobs 
-game over function to check when won
-
-'''
-
 # constants
 WATER = '~'
 SHIP = 'S'
@@ -67,24 +48,6 @@ class Board:
                 self.grid[row][col] = SHIP
                 self.ship_locations.append((row, col))
 
-class Game:
-    '''
-    create a hidden board used for only displaying.
-    print boards for user.
-    get user guess.
-    get computer guess.
-    validate guess'.
-    update player and computer boards.
-    update hidden board.
-    check for game over.
-    '''
-    pass
-
-def print_grid(board):
-    # used for testing until class game works
-    for i in board.grid:
-        print(' '.join(i))
-
 def title():
     print('******************************')
     print(' ---------Battleships---------')
@@ -103,7 +66,7 @@ def print_boards_together(board1, board2):
     
 def display_board(board):
     '''
-    copies the inputed boards' grid
+    copies the inputted boards' grid
     replaces the ships with water to hide them
     '''
     display_grid = []
@@ -207,7 +170,6 @@ def main():
     '''
     title()
     print_boards_together(board_player, display_board_computer)
-    print(board_computer.ship_locations)
 
     '''
     game loop
