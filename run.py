@@ -182,11 +182,11 @@ def convert_coordinates(row, col):
     return coordinate
 
 def check_game_over(player_ship_locations, computer_ship_locations):
-    if board_computer.ship_locations == []:
+    if not computer_ship_locations:
         print("You have sunk all of the computers ships. You Win!")
         return True # game over
 
-    if board_player.ship_locations == []:
+    if not player_ship_locations:
         print("The computer has sunk all of your ships. You lose!")
         return True # game over
 
@@ -239,5 +239,4 @@ def main():
         if check_game_over(board_player.ship_locations, board_computer.ship_locations):
             break
         
-
 main()
