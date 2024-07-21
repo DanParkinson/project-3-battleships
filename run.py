@@ -97,11 +97,11 @@ def print_boards_together(board1, board2):
     '''
     takes grid from both boards and prints them next to each other
     '''
+    print("  -Player-          -Computer-")
     for row1, row2 in zip(board1.grid, board2.grid):
         print( ' '.join(row1) + '        ' + ' '.join(row2))
     print('******************************')
     
-
 def display_board(board):
     '''
     copies the inputed boards' grid
@@ -159,7 +159,6 @@ def update_board(board, guess_row, guess_col, ship_locations):
         board[guess_row][guess_col] = MISS
         print("MISS!")
         print('******************************')
-
 
 def validate_guess(board, guess_row, guess_col):
     '''
@@ -222,7 +221,6 @@ def main():
                 computer_guess_coordinate = convert_coordinates(computer_guess_row, computer_guess_col)
                 print(f"The computer fired on {computer_guess_coordinate}")
                 update_board(board_player.grid, computer_guess_row, computer_guess_col, board_player.ship_locations)
-
                 break
 
         # updates display board and reprints them
