@@ -15,8 +15,7 @@ computer guess will be checked and validated against board_player
 board_player updated and printed
 
 jobs 
-game over functionn to check when won
-tidy up terminal display with seperators
+game over function to check when won
 
 '''
 
@@ -182,6 +181,15 @@ def convert_coordinates(row, col):
     coordinate = f"{row_letter}{col}"
     return coordinate
 
+def check_game_over(player_ship_locations, computer_ship_locations):
+    if board_computer.ship_locations == []:
+        print("You have sunk all of the computers ships. You Win!")
+        return True # game over
+
+    if board_player.ship_locations == []:
+        print("The computer has sunk all of your ships. You lose!")
+        return True # game over
+
 def main():
     '''
     creates player and computer board 
@@ -226,5 +234,10 @@ def main():
         # updates display board and reprints them
         display_board_computer.grid = display_board(board_computer)
         print_boards_together(board_player, display_board_computer)
+
+        # checks for game over
+        if check_game_over(board_player.ship_locations, board_computer.ship_locations):
+            break
+        
 
 main()
