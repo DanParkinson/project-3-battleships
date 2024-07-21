@@ -171,6 +171,12 @@ def get_computer_guess(grid_size):
     guess_col = random.randint(1, grid_size - 1)
     return guess_row, guess_col
 
+def convert_coordinates(row, col):
+    # Convert row number to a letter (1 -> A, 2 -> B, etc.)
+    row_letter = LETTERS[row]
+    # Combine row letter with column number
+    coordinate = f"{row_letter}{col}"
+    return coordinate
 
 def main():
     '''
@@ -209,7 +215,8 @@ def main():
             computer_guess_row, computer_guess_col = get_computer_guess(grid_size)
             if validate_guess(board_player.grid, computer_guess_row, computer_guess_col): #checks True False
                 update_board(board_player.grid, computer_guess_row, computer_guess_col, board_player.ship_locations)
-                print(f"Computer fired on ({computer_guess_row}, {computer_guess_col})")
+                computer_guess_coordinate = convert_coordinates(computer_guess_row, computer_guess_col)
+                print(f"The computer guessed {computer_guess_coordinate}")
                 break
 
         # updates display board and reprints them
