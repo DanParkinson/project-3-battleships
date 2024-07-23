@@ -128,7 +128,6 @@ Import random was used to generate random numbers for the coordinates of the com
 
 ### Features Left To Implement
 
-*There are no features left to implement from the initial scope of my project, however I have some features that I would like to add in the future.*
 - Player can place their own ships.
 - Ships of different lengths to be used.
 - A bullets system that gives players a certain amount of lives. 
