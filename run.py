@@ -6,7 +6,7 @@ SHIP = 'S'
 HIT = 'H'
 MISS = 'M'
 LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K']
-grid_size = 6
+grid_size = 4
 
 
 class Board:
@@ -17,7 +17,7 @@ class Board:
     '''
     def __init__(self):
         # initialises the grids for the boards
-        self.grid_size = 6
+        self.grid_size = 4
         self.num_of_ships = 5
         self.grid = self.create_grid()
         self.add_axis_to_grid()
