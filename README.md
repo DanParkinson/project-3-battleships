@@ -238,6 +238,8 @@ Chat GPT was used to produce the following code
 
 ![add_axis_to_board code](assets/readme/reference_axis.png)
 
+![print_boards_side_by_side code](assets/readme/print_boards_side_by_side.png)
+
 ### Code 
 - https://chatgpt.com/
 - [Stack Overflow](https://stackoverflow.com/ "Link to Stack Overflow page")

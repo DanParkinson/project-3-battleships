@@ -37,6 +37,7 @@ class Board:
             self.grid_size)]
 
     def add_axis_to_grid(self):
+        # code attributed to chatgpt
         # replace numbers at the top of grid to numbers
         self.grid[0] = [' '] + [str(i) for i in range(1, self.grid_size)]
         # replace first cell in each row with letters.
@@ -68,6 +69,7 @@ def title():
 
 def print_boards_together(board1, board2):
     '''
+    code attributed to chatgpt
     takes grid from both boards and prints them next to each other
     '''
     print("  -Player-          -Computer-")
