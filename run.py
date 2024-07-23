@@ -94,7 +94,7 @@ def get_player_guess(grid_size):
     '''
     while True:
         try:
-            guess = input("choose a coordinate to fire on (e.g A1): ").upper()
+            guess = input("choose a coordinate to fire on (e.g A1): \n").upper()
             if len(guess) != 2 or not guess[0].isalpha() or not guess[1].isdigit():
                 raise ValueError("Not valid input")
 
