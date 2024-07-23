@@ -221,6 +221,7 @@ def main():
         # updates display board and reprints them
         display_board_c.grid = display_board(board_c)
         print_boards_together(board_p, display_board_c)
+        print(' ')
 
         # checks for game over
         if check_game_over(board_p.ship_locs, board_c.ship_locs):

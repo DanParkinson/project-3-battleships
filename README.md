@@ -140,7 +140,7 @@ The developer ran into issues during the development of the programme, with the 
 -  The computer guess would print all tried coordinates if they had already been guessed. This was fixed by alterining the loop location to stop it repeating.
 
 ### Remaining bugs 
-- No bugs remaining
+- When testing in Heroku. The game would sometimes stop the user inputting anything. This was very hard to reproduce and happened towards the end of the game. The developer could not find the cause of the bug and has been left in. 
 
 ## Technologies Used
 ### Main Languages Used
@@ -190,7 +190,10 @@ Validation checked with invalid inputs:
 ### Code Validation
 The [PEP8 Online Checker](https://extendsclass.com/python-tester.html/) service was used to validate the code written in the run.py file.
 
-![PEP8 validation](assets/readme/)
+The variable names chosen were too long for the maximum charachter count per line. 
+Seleceted words were chosen to shorten these and a key was created to aid with translations. 
+
+![PEP8 validation](assets/readme/pep8.png)
 
 ## User Testing
 
