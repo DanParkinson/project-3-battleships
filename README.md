@@ -123,6 +123,9 @@ A flow chart was created to show the flow of the programme.
 
 ![game over response](assets/readme/computer_sunk_ships.png)
 
+#### Libraries
+Import random was used to generate random numbers for the coordinates of the computer guess and the ship location on the boards.
+
 ### Features Left To Implement
 
 *There are no features left to implement from the initial scope of my project, however I have some features that I would like to add in the future.*
