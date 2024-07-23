@@ -8,6 +8,13 @@ MISS = 'M'
 LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K']
 grid_size = 4
 
+'''
+Legend
+g = guess
+p = player
+c = computer
+'''
+
 
 class Board:
     '''
@@ -21,12 +28,13 @@ class Board:
         self.num_of_ships = 5
         self.grid = self.create_grid()
         self.add_axis_to_grid()
-        self.ship_locations = []
+        self.ship_locs = []
         self.place_ships()
 
     def create_grid(self):
         # creates an 6x6 grid
-        return [[WATER for i in range(self.grid_size)] for i in range(self.grid_size)]
+        return [[WATER for i in range(self.grid_size)] for i in range(
+            self.grid_size)]
 
     def add_axis_to_grid(self):
         # replace numbers at the top of grid to numbers
@@ -42,12 +50,12 @@ class Board:
         turns coordinate into a ship.
         adds coordinate to ship_locations.
         '''
-        while len(self.ship_locations) < self.num_of_ships:
+        while len(self.ship_locs) < self.num_of_ships:
             row = random.randint(1, self.grid_size - 1)
             col = random.randint(1, self.grid_size - 1)
             if self.grid[row][col] != SHIP:
                 self.grid[row][col] = SHIP
-                self.ship_locations.append((row, col))
+                self.ship_locs.append((row, col))
 
 
 def title():
@@ -85,67 +93,71 @@ def display_board(board):
     return display_grid
 
 
-def get_player_guess(grid_size):
+def get_p_g(grid_size):
     '''
+    get player guess
     player inputs coordinate e.g. A1
     letter turned into number of index in LETTERS
     number changed from string to integer
     checks it is within the grid
     '''
     while True:
+        # g = guess
         try:
-            guess = input("choose a coordinate to fire on (e.g A1): \n").upper()
-            if len(guess) != 2 or not guess[0].isalpha() or not guess[1].isdigit():
+            g = input("choose a coordinate to fire on (e.g A1): \n").upper()
+            if len(g) != 2 or not g[0].isalpha() or not g[1].isdigit():
                 raise ValueError("Not valid input")
 
             # changes letter to number and adjusts for axis
-            guess_row = LETTERS.index(guess[0]) + 1
+            g_row = LETTERS.index(g[0]) + 1
             # int not str
-            guess_col = int(guess[1])
+            g_col = int(g[1])
 
-            if 1 <= guess_row <= grid_size - 1 and 1 <= guess_col <= grid_size - 1:
-                print(f"You fired on {guess}")
-                return guess_row, guess_col
+            if 1 <= g_row <= grid_size - 1 and 1 <= g_col <= grid_size - 1:
+                print(f"You fired on {g}")
+                return g_row, g_col
                 break
             else:
-                print(f"{guess} is not on the grid")
+                print(f"{g} is not on the grid")
         except ValueError:
-            print(f"{guess} is not on the grid")
+            print(f"{g} is not on the grid")
 
 
-def update_board(board, guess_row, guess_col, ship_locations):
+def update_board(board, g_row, g_col, ship_locs):
     '''
     player guess is checked on the board.
     if it is a ship it becomes hit
     anything else it is a miss
     ship location removed from list
     '''
-    if board[guess_row][guess_col] == SHIP:
-        board[guess_row][guess_col] = HIT
+    if board[g_row][g_col] == SHIP:
+        board[g_row][g_col] = HIT
         print("HIT!")
         print('******************************')
-        ship_locations.remove((guess_row, guess_col))
+        ship_locs.remove((g_row, g_col))
     else:
-        board[guess_row][guess_col] = MISS
+        board[g_row][g_col] = MISS
         print("MISS!")
         print('******************************')
 
 
-def validate_guess(board, guess_row, guess_col):
+def validate_g(board, g_row, g_col):
     '''
+    validate guess
     if the guess is WATER or SHIP it returns True
     if the guess is HIT or MISS returns False
     '''
-    return board[guess_row][guess_col] not in [HIT, MISS]
+    return board[g_row][g_col] not in [HIT, MISS]
 
 
-def get_computer_guess(grid_size):
+def get_c_g(grid_size):
     '''
+    get computer guess
     genterates random coordinate for the computer guess.
     '''
-    guess_row = random.randint(1, grid_size - 1)
-    guess_col = random.randint(1, grid_size - 1)
-    return guess_row, guess_col
+    g_row = random.randint(1, grid_size - 1)
+    g_col = random.randint(1, grid_size - 1)
+    return g_row, g_col
 
 
 def convert_coordinates(row, col):
@@ -156,12 +168,12 @@ def convert_coordinates(row, col):
     return coordinate
 
 
-def check_game_over(player_ship_locations, computer_ship_locations):
-    if not computer_ship_locations:
+def check_game_over(p_ship_locs, c_ship_locs):
+    if not c_ship_locs:
         print("You have sunk all of the computers ships. You Win!")
         return True
 
-    if not player_ship_locations:
+    if not p_ship_locs:
         print("The computer has sunk all of your ships. You lose!")
         return True
 
@@ -172,17 +184,17 @@ def main():
     creates display board for computer
     changes the display computer board into a display version of computer board
     '''
-    board_player = Board()
-    board_computer = Board()
-    display_board_computer = Board()
+    board_p = Board()
+    board_c = Board()
+    display_board_c = Board()
     # makes a hidden copy of the board_computer.grid
-    display_board_computer.grid = display_board(board_computer)
+    display_board_c.grid = display_board(board_c)
 
     '''
     initial game start screen
     '''
     title()
-    print_boards_together(board_player, display_board_computer)
+    print_boards_together(board_p, display_board_c)
 
     '''
     game loop
@@ -190,30 +202,29 @@ def main():
     while True:
         while True:
             # player guess
-            player_guess_row, player_guess_col = get_player_guess(grid_size)
-            if validate_guess(board_computer.grid, player_guess_row, player_guess_col):
-                update_board(board_computer.grid, player_guess_row, player_guess_col, board_computer.ship_locations)
+            p_g_row, p_g_col = get_p_g(grid_size)
+            if validate_g(board_c.grid, p_g_row, p_g_col):
+                update_board(board_c.grid, p_g_row, p_g_col, board_c.ship_locs)
                 break
             else:
                 print("You have already guessed that location")
 
         while True:
             # computer guess
-            computer_guess_row, computer_guess_col = get_computer_guess(grid_size)
-            if validate_guess(board_player.grid, computer_guess_row, computer_guess_col):
-                computer_guess_coordinate = convert_coordinates(computer_guess_row, computer_guess_col)
-                print(f"The computer fired on {computer_guess_coordinate}")
-                update_board(board_player.grid, computer_guess_row, computer_guess_col, board_player.ship_locations)
+            c_g_row, c_g_col = get_c_g(grid_size)
+            if validate_g(board_p.grid, c_g_row, c_g_col):
+                c_g_coordinate = convert_coordinates(c_g_row, c_g_col)
+                print(f"The computer fired on {c_g_coordinate}")
+                update_board(board_p.grid, c_g_row, c_g_col, board_p.ship_locs)
                 break
 
         # updates display board and reprints them
-        display_board_computer.grid = display_board(board_computer)
-        print_boards_together(board_player, display_board_computer)
+        display_board_c.grid = display_board(board_c)
+        print_boards_together(board_p, display_board_c)
 
         # checks for game over
-        if check_game_over(board_player.ship_locations, board_computer.ship_locations):
+        if check_game_over(board_p.ship_locs, board_c.ship_locs):
             break
 
 
 main()
-
